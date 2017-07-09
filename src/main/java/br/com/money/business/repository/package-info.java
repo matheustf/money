@@ -5,4 +5,4 @@
  * @author matheus
  *
  */
-package br.com.money.business.respository;
+package br.com.money.business.repository;
