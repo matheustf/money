@@ -15,6 +15,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * Created by odilon-jr on 14/07/17.
  */
+
+@EnableWebSecurity
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
@@ -27,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .anyRequest().authenticated().
                 and()
-                .addFilterBefore(new JWTAuthenticationFilter("/login", authenticationManager()),
+                .addFilterBefore(new JWTAuthenticationFilter.JWTLoginFilter("/login", authenticationManager()),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);
