@@ -14,7 +14,7 @@ public class TokenAuthenticationService {
 
     static final long EXPIRATION_TIME = 860_000_000;
     static final String SECRET = "MySecret";
-    static final String TOKEN_PREFIX = "Bearer";
+    static final String TOKEN_PREFIX = "Money";
     static final String HEADER_STRING = "Authorization";
 
     public static void addAuthentication(HttpServletResponse response, String username) {

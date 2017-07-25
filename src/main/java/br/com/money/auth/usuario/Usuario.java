@@ -15,12 +15,11 @@ import java.util.List;
 @Entity
 public class Usuario implements UserDetails {
 
+
     @Id
     private String login;
     private String password;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Regra> regras = new ArrayList<>();
 
     public String getLogin() {
         return login;
@@ -42,9 +41,12 @@ public class Usuario implements UserDetails {
         this.name = name;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Regra> roles = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return regras;
+        return roles;
     }
 
     @Override
@@ -56,12 +58,10 @@ public class Usuario implements UserDetails {
     public String getUsername() {
         return login;
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
@@ -71,7 +71,6 @@ public class Usuario implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
